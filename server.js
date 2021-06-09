@@ -21,8 +21,11 @@ app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
+const dburl=process.env.DATABASE_URL || "mongodb://127.0.0.1:27017";
+const port=process.env.PORT || 3000;
+
 const mongoose = require('mongoose')
-mongoose.connect(process.env.DATABASE_URL, { 
+mongoose.connect(dburl, { 
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
@@ -36,4 +39,4 @@ app.use('/', indexRouter)
 app.use('/authors', authorRouter)
 app.use('/books', bookRouter)
 
-app.listen(process.env.PORT || 3000);
+app.listen(port);
