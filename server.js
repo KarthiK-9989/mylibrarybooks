@@ -28,6 +28,7 @@ const port=process.env.PORT || 3000;
 const mongoose = require('mongoose')
 mongoose.connect(dburl, { 
   useNewUrlParser: true,
+  useUnifiedTopology: true,
   useCreateIndex: true,
   useFindAndModify: false,
 })
